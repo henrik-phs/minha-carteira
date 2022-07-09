@@ -1,0 +1,49 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f1f3f7;
+}
+
+a {
+    text-decoration: none;
+}
+
+.d-none {
+    display: none;
+}
+
+.m-none {
+    display: inline;
+}
+
+.center {
+    text-align: center;
+}
+
+.card-main {
+    padding: 5em 0;
+}
+
+.card {
+    box-shadow: 2px 2px 5px #ddd;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.icon-menu {
+    font-size: 60px;
+}
+
+@media(max-width: 500px) {
+    .card-main {
+        padding: 2em 1em;
+    }
+    .card {
+        margin: 5px 0;
+    }
+    .d-none {
+        display: inline !important;
+    }
+    .m-none {
+        display: none;
+    }
+}
