@@ -28,62 +28,82 @@
 </head>
 
 <body>
-    <div class="container card-main">
-        <div class="card card-body">
+    <div class="nav-topo">
+        <p id="fechar">topo</p>
+    </div>
+    <div class="nav-lateral">
+        <p>lateral</p>
+        @for ($x = 0; $x < 100; $x++)
+            {{ $x }} <br>
+        @endfor
+    </div>
+    <div class="click-menu-mobile"></div>
+    <div class="conteudo">
+        <p>conteudo</p>
+        @for ($x = 0; $x < 100; $x++)
+            {{ $x }} <br>
+        @endfor
 
-            <div class="d-none">
-                <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand text-success" href="#">Minha Carteira</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Inserir</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Relatórios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Minha Conta</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+
+        <div class="container card-main">
+            <div class="card card-body">
+
+                <div class="d-none">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand text-success" href="#">Minha Carteira</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Inserir</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Relatórios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Minha Conta</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="m-none center">
+                    <h1 class="text-success">Minha Carteira</h1>
+
+                    <nav class="navbar navbar-expand-lg">
+
+                        <div id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Inserir</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Relatórios</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Minha Conta</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+                @yield('content')
             </div>
-
-            <div class="m-none center">
-                <h1 class="text-success">Minha Carteira</h1>
-
-                <nav class="navbar navbar-expand-lg">
-                    
-                    <div id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Inserir</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Relatórios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Minha Conta</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-
-            @yield('content')
         </div>
     </div>
+
+    <script src="js/efects.js"></script>
 </body>
 
 </html>
