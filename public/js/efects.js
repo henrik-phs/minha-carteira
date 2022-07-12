@@ -2,32 +2,37 @@ var x = 0;
 
 function menuDesktop() {
     var wdt = $(window).width();
+    var widthMobile = 75;
+    var wdtM = widthMobile + 20;
+    var widthDesktop = 250;
 
     if (x == 0) {
         $(".nav-topo").css({
-            "width": wdt - 50,
-            "margin-left": 50
+            "width": wdt - wdtM,
+            "margin-left": widthMobile
         });
         $(".nav-lateral").css({
-            "width": "50px"
+            "width": widthMobile + "px"
         });
         $(".conteudo").css({
-            "width": wdt - 50,
-            "margin-left": 50
+            "width": wdt - wdtM,
+            "margin-left": widthMobile
         });
+        $(".txt-menu").hide("slow");
         x = 1;
     } else {
         $(".nav-topo").css({
-            "width": wdt - 250,
-            "margin-left": 250
+            "width": wdt - widthDesktop,
+            "margin-left": widthDesktop
         });
         $(".nav-lateral").css({
-            "width": "250px"
+            "width": widthDesktop + "px"
         });
         $(".conteudo").css({
-            "width": wdt - 250,
-            "margin-left": 250
+            "width": wdt - widthDesktop,
+            "margin-left": widthDesktop
         });
+        $(".txt-menu").show();
         x = 0;
     }
     console.log(x);

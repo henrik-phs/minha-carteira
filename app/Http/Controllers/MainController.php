@@ -10,4 +10,9 @@ class MainController extends Controller
     {
         return view("welcome");
     }
+
+    public function insert()
+    {
+        return view("insert");
+    }
 }

@@ -1,3 +1,16 @@
+@php
+$url_atual = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+function urlBase(string $uri = null)
+{
+    if ($uri) {
+        return 'http://localhost:8000' . "/{$uri}";
+    }
+
+    return 'http://localhost:8000/';
+}
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -18,6 +31,10 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -28,79 +45,86 @@
 </head>
 
 <body>
-    <div class="nav-topo">
-        <p id="fechar">topo</p>
-    </div>
-    <div class="nav-lateral">
-        <p>lateral</p>
-        @for ($x = 0; $x < 100; $x++)
-            {{ $x }} <br>
-        @endfor
-    </div>
+
     <div class="click-menu-mobile"></div>
+
+    <div class="nav-topo">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button type="button" id="fechar" class="btn btn-link" style="font-size: 20px">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav nav-right">
+                <li class="nav-item">
+                    <a href="#" class="txt-blue-3"><i class="far fa-bell"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="txt-blue-3"><i class="fas fa-question-circle"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="txt-blue-3"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="nav-lateral">
+        <p class="txt-grey-4">
+            <img src="imgs/logo.png" alt="" width="22px">
+            <span class="txt-menu">Minha Carteira</span>
+        </p>
+
+        <ul class="navbar-nav">
+            <li class="nav-item {{ $url_atual == urlBase() ? 'active' : '' }}">
+                <a class="nav-link txt-grey-4" href="/">
+                    {{-- <ion-icon name="home-outline"></ion-icon> --}}
+                    <i class="fa-solid fa-house-chimney txt-blue-3"></i>
+                    <span class="txt-menu">Home</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link txt-grey-4" href="/insert">
+                    {{-- <ion-icon name="add-circle-outline"></ion-icon> --}}
+                    <i class="fa-solid fa-circle-plus txt-blue-3"></i>
+                    <span class="txt-menu">Inserir</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link txt-grey-4" href="#">
+                    {{-- <ion-icon name="bar-chart-outline"></ion-icon> --}}
+                    <i class="fa-solid fa-chart-column txt-blue-3"></i>
+                    <span class="txt-menu">Relatórios</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link txt-grey-4" href="#">
+                    {{-- <ion-icon name="person-circle-outline"></ion-icon> --}}
+                    <i class="fa-solid fa-circle-user txt-blue-3"></i>
+                    <span class="txt-menu">Minha Conta</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
     <div class="conteudo">
-        <p>conteudo</p>
-        @for ($x = 0; $x < 100; $x++)
-            {{ $x }} <br>
-        @endfor
 
+        <div class="card-main">
+            <div class="container-fluid">
 
-        <div class="container card-main">
-            <div class="card card-body">
-
-                <div class="d-none">
-                    <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand text-success" href="#">Minha Carteira</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Inserir</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Relatórios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Minha Conta</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-
-                <div class="m-none center">
-                    <h1 class="text-success">Minha Carteira</h1>
-
-                    <nav class="navbar navbar-expand-lg">
-
-                        <div id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Inserir</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Relatórios</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Minha Conta</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-
+                <h1 class="txt-blue-4">@yield('title')</h1>
                 @yield('content')
+
             </div>
+
         </div>
+    </div>
     </div>
 
     <script src="js/efects.js"></script>

@@ -1,6 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f1f3f7;
+    /* background: #f1f3f7; */
 }
 
 a {
@@ -20,7 +20,12 @@ a {
 }
 
 .card-main {
-    padding: 5em 0;
+    padding: 1em 0;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    height: calc(100vh - 140px);
+    overflow-y: auto;
 }
 
 .card {
@@ -39,30 +44,29 @@ a {
 .nav-topo,
 .nav-lateral,
 .conteudo {
-    padding: 10px 20px;
     transition: width 1s ease, margin-left 1s ease;
 }
 
 .nav-topo {
     margin-left: 250px;
+    padding: 10px 20px;
     width: calc(100% - 250px);
     background: #fff;
-    border-bottom: 2px solid #aaa;
-    z-index: 900;
+    z-index: 1000;
 }
 
 .nav-lateral {
+    padding: 20px;
     height: 100vh;
     float: none;
     position: fixed;
     top: 0;
     left: 0;
     background: #fff;
-    border-right: 2px solid #aaa;
     width: 250px;
     z-index: 1001;
-    overflow-x: auto;
-    overflow-y: none;
+    overflow-y: auto;
+    overflow-x: none;
 }
 
 .click-menu-mobile {
@@ -74,28 +78,59 @@ a {
 }
 
 .conteudo {
-    margin-left: 250px;
-    width: calc(100% - 250px);
+    padding: 20px;
+    margin: 0 20px 20px 250px;
+    width: calc(100% - 270px);
     z-index: 900;
+    background: #f1f3f7;
+    border-radius: 30px;
 }
 
-@media(max-width: 500px) {
-    .card-main {
-        padding: 2em 1em;
-    }
-    .card {
-        margin: 5px 0;
-    }
-    .d-none {
-        display: inline !important;
-    }
-    .m-none {
-        display: none;
-    }
+
+/* MENU */
+
+ul li {
+    padding: 0 7px;
+}
+
+ul i {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.nav-item {
+    border-radius: 10px;
+}
+
+.nav-item:hover,
+.nav-item li:hover,
+.nav-item:hover i {
+    background: #40b6d3;
+    color: #fff !important;
+}
+
+.active,
+.active i,
+.active .txt-menu {
+    background: #40b6d3;
+    color: #fff !important;
+}
+
+
+/* MENU TOPO */
+
+.nav-right {
+    text-align: right;
+    float: right;
+    right: 20px;
+    position: absolute;
+}
+
+@media(max-width: 1000px) {
     .nav-topo,
     .conteudo {
-        margin-left: 0px;
-        width: 100%;
+        margin: 0px 20px 20px 20px;
+        width: calc(100% - 40px);
     }
     .nav-lateral {
         /* position: absolute; */
