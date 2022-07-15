@@ -119,6 +119,13 @@ function urlBase(string $uri = null)
             <div class="container-fluid">
 
                 <h1 class="txt-blue-4">@yield('title')</h1>
+
+                @if (session('msg'))
+                    <div class="alert alert-info">
+                        {{ session('msg') }}
+                    </div>
+                @endif
+
                 @yield('content')
 
             </div>

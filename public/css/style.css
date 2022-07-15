@@ -126,6 +126,14 @@ ul i {
     position: absolute;
 }
 
+.form-group {
+    padding-top: 20px;
+}
+
+b {
+    text-transform: uppercase;
+}
+
 @media(max-width: 1000px) {
     .nav-topo,
     .conteudo {
