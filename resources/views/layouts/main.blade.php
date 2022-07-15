@@ -96,6 +96,15 @@ function urlBase(string $uri = null)
                     <span class="txt-menu">Inserir</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link txt-grey-4" href="/read">
+                    {{-- <ion-icon name="add-circle-outline"></ion-icon> --}}
+                    <i class="fas fa-file-alt txt-blue-3"></i>
+                    <span class="txt-menu">Histórico</span>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link txt-grey-4" href="#">
                     {{-- <ion-icon name="bar-chart-outline"></ion-icon> --}}
@@ -131,7 +140,6 @@ function urlBase(string $uri = null)
             </div>
 
         </div>
-    </div>
     </div>
 
     <script src="js/efects.js"></script>

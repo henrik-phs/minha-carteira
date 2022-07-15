@@ -134,6 +134,10 @@ b {
     text-transform: uppercase;
 }
 
+.txt-small {
+    font-size: 12px;
+}
+
 @media(max-width: 1000px) {
     .nav-topo,
     .conteudo {

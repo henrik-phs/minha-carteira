@@ -31,4 +31,13 @@ class MainController extends Controller
 
         return redirect('/')->with('msg', 'Sucesso ao inserir!');
     }
+
+    public function read()
+    {
+        $inserts = Insert::all();
+
+        return view('read', [
+            'inserts' => $inserts
+        ]);
+    }
 }
