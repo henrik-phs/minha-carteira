@@ -19,3 +19,8 @@ Route::get('/insert', [MainController::class, 'insert']);
 Route::post('/insert/data', [MainController::class, 'insertData']);
 
 Route::get('/read', [MainController::class, 'read']);
+
+Route::get('/edit/{id}', [MainController::class, 'edit']);
+Route::post('/edit/data/{id}', [MainController::class, 'editData']);
+
+Route::delete('delete/data/{id}', [MainController::class, 'deleteData']);

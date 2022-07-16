@@ -40,4 +40,28 @@ class MainController extends Controller
             'inserts' => $inserts
         ]);
     }
+
+    public function edit($id)
+    {
+        $insert = Insert::findOrFail($id);
+        return view("edit", [
+            'insert' => $insert
+        ]);
+    }
+
+    public function editData(Request $request)
+    {
+        $data = $request->all();
+
+        Insert::findOrFail($request->id)->update($data);
+
+        return redirect('/read')->with('msg', 'Atualizado com sucesso');
+    }
+
+    public function deleteData($id)
+    {
+        Insert::findOrFail($id)->delete();
+
+        return redirect('/read')->with('msg', 'Excluído com sucesso');
+    }
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Insert extends Model
 {
     use HasFactory;
+
+    protected $dates = ['date'];
+    
+    protected $guarded = [];
 }

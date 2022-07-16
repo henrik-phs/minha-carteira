@@ -48,11 +48,20 @@
 
                     <div class="col-md-2">
                         <small class="txt-small txt-grey-1">Tipo:</small><br>
-                        <span class="txt-desc txt-grey-4"><i class="{{ $tipo[$insert->type] }}"
-                                title="{{ $tipoNome[$insert->type] }}"></i></span>
+                        <span style="font-size: 20px"><i class="{{ $tipo[$insert->type] }}"
+                                title="{{ $tipoNome[$insert->type] }}"></i></span> &nbsp;
 
-                        <span class="txt-desc txt-grey-4"><i class="{{ $tipoPagamento[$insert->type_payment] }}"
-                                title="{{ $insert->type_payment }}"></i></span>
+                        <span style="font-size: 20px"><i class="{{ $tipoPagamento[$insert->type_payment] }}"
+                                title="{{ $insert->type_payment }}"></i></span> &nbsp;
+
+                        <a href="/edit/{{ $insert->id }}" class="btn btn-warning btn-sm" title="Editar registro"><i class="fas fa-edit"></i></a>
+
+                        <form action="/delete/data/{{ $insert->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger btn-sm" title="Remover Registro"><i class="fas fa-trash"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
