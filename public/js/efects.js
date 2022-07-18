@@ -6,7 +6,7 @@ function menuDesktop() {
     var wdtM = widthMobile + 20;
     var widthDesktop = 250;
 
-    if (x == 0) {
+    if (x == 0) { // VERIFICA SE O BOTÃO FOI CLICADO
         $(".nav-topo").css({
             "width": wdt - wdtM,
             "margin-left": widthMobile

@@ -141,11 +141,21 @@ b {
 @media(max-width: 1000px) {
     .nav-topo,
     .conteudo {
-        margin: 0px 20px 20px 20px;
-        width: calc(100% - 40px);
+        margin: 0px 10px 10px 10px;
+        width: calc(100% - 20px);
+        padding: 10px;
+    }
+    .card-main {
+        padding: 10px;
     }
     .nav-lateral {
         /* position: absolute; */
+        display: none;
+    }
+    .txt-desc {
+        font-size: 13px;
+    }
+    .txt-small {
         display: none;
     }
 }

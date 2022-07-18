@@ -24,3 +24,5 @@ Route::get('/edit/{id}', [MainController::class, 'edit']);
 Route::post('/edit/data/{id}', [MainController::class, 'editData']);
 
 Route::delete('delete/data/{id}', [MainController::class, 'deleteData']);
+
+Route::get('/report', [MainController::class, 'report']);

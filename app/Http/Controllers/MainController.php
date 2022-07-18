@@ -34,7 +34,7 @@ class MainController extends Controller
 
     public function read()
     {
-        $inserts = Insert::all();
+        $inserts = Insert::query()->orderBy('date', 'DESC')->get();
 
         return view('read', [
             'inserts' => $inserts
@@ -63,5 +63,10 @@ class MainController extends Controller
         Insert::findOrFail($id)->delete();
 
         return redirect('/read')->with('msg', 'Excluído com sucesso');
+    }
+
+    public function report()
+    {
+        return view('report');
     }
 }

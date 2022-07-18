@@ -39,8 +39,8 @@ function urlBase(string $uri = null)
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/style.css?{{ time() }}">
+    <link rel="stylesheet" href="/css/colors.css?{{ time() }}">
 
 </head>
 
@@ -89,7 +89,7 @@ function urlBase(string $uri = null)
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ $url_atual == urlBase('insert') ? 'active' : '' }}">
                 <a class="nav-link txt-grey-4" href="/insert">
                     {{-- <ion-icon name="add-circle-outline"></ion-icon> --}}
                     <i class="fa-solid fa-circle-plus txt-blue-3"></i>
@@ -97,7 +97,7 @@ function urlBase(string $uri = null)
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ $url_atual == urlBase('read') ? 'active' : '' }}">
                 <a class="nav-link txt-grey-4" href="/read">
                     {{-- <ion-icon name="add-circle-outline"></ion-icon> --}}
                     <i class="fas fa-file-alt txt-blue-3"></i>
@@ -105,14 +105,14 @@ function urlBase(string $uri = null)
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link txt-grey-4" href="#">
+            <li class="nav-item {{ $url_atual == urlBase('report') ? 'active' : '' }}">
+                <a class="nav-link txt-grey-4" href="/report">
                     {{-- <ion-icon name="bar-chart-outline"></ion-icon> --}}
                     <i class="fa-solid fa-chart-column txt-blue-3"></i>
                     <span class="txt-menu">Relatórios</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ $url_atual == urlBase('#') ? 'active' : '' }}">
                 <a class="nav-link txt-grey-4" href="#">
                     {{-- <ion-icon name="person-circle-outline"></ion-icon> --}}
                     <i class="fa-solid fa-circle-user txt-blue-3"></i>
