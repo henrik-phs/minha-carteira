@@ -46,6 +46,25 @@
         </div>
     </div>
 
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Tipos De Pagamentos</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Entradas</h4><br>
+                    <canvas id="pay_in"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <h4>Saídas</h4><br>
+                    <canvas id="pay_out"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script>
         const ctx = document.getElementById('historic').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -82,6 +101,60 @@
                 }
             }
         });
+
+        // GRÁFICO CIRCULAR ENTRADAS
+        const chartPayIn = document.getElementById('pay_in').getContext('2d');
+        const dataPayIn = {
+            labels: [
+                'Dinheiro',
+                'Cartão de Crédito',
+                'Pix'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const configPayIn = {
+            type: 'doughnut',
+            data: dataPayIn,
+        };
+
+        const myChartPayIn = new Chart(chartPayIn, configPayIn);
+
+        // GRÁFICO CIRCULAR SAÍDAS
+        const chartPayOut = document.getElementById('pay_out').getContext('2d');
+        const dataPayOut = {
+            labels: [
+                'Dinheiro',
+                'Cartão de Crédito',
+                'Pix'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const configPayOut = {
+            type: 'doughnut',
+            data: dataPayOut,
+        };
+
+        const myChartPayOut = new Chart(chartPayOut, configPayOut);
     </script>
 
 @endsection
