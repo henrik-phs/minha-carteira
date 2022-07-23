@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [MainController::class, "index"]);
 Route::get('/insert', [MainController::class, 'insert']);
@@ -26,3 +27,6 @@ Route::post('/edit/data/{id}', [MainController::class, 'editData']);
 Route::delete('delete/data/{id}', [MainController::class, 'deleteData']);
 
 Route::get('/report', [MainController::class, 'report']);
+
+
+Route::get('account', [UserController::class, 'account']);

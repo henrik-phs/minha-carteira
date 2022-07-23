@@ -28,7 +28,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="#">
+            <a href="/report">
                 <div class="card card-body">
                     <span>
                         <ion-icon name="bar-chart-outline" class="icon-menu txt-blue-3"></ion-icon><br>

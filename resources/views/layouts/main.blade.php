@@ -112,8 +112,8 @@ function urlBase(string $uri = null)
                     <span class="txt-menu">Relatórios</span>
                 </a>
             </li>
-            <li class="nav-item {{ $url_atual == urlBase('#') ? 'active' : '' }}">
-                <a class="nav-link txt-grey-4" href="#">
+            <li class="nav-item {{ $url_atual == urlBase('/account') ? 'active' : '' }}">
+                <a class="nav-link txt-grey-4" href="/account">
                     {{-- <ion-icon name="person-circle-outline"></ion-icon> --}}
                     <i class="fa-solid fa-circle-user txt-blue-3"></i>
                     <span class="txt-menu">Minha Conta</span>

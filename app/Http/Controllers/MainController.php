@@ -67,6 +67,9 @@ class MainController extends Controller
 
     public function report()
     {
-        return view('report');
+        $total_in = Insert::where("type", "1")->get();
+        return view('report', [
+            "total_in" => $total_in
+        ]);
     }
 }

@@ -9,6 +9,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <div class="row center">
+        {{var_dump($total_in)}}
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Total de entradas</span><br>
