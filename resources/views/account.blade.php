@@ -8,11 +8,29 @@
         </div>
 
         <div class="col-md-8">
-            <b class="txt-blue-3">Pedro Henrique da Silva</b><br>
-            <p>
-                <i class="fa fa-mail-bulk"></i> pedrohenriquedasilva100@gmail.com <br>
-                <i class="fa fa-phone"></i> (33) 99910-2490
-            </p>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-circle-user txt-blue-3 form-icon"></i></span>
+                <input type="text" name="name" id="name" class="form-control"
+                    value="Pedro Henrique da Silva">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="far fa-envelope txt-blue-3 form-icon"></i></span>
+                <input type="email" class="form-control" name="email" id="email"
+                    value="pedrohenriquedasilva100@gmail.com">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-phone txt-blue-3 form-icon"></i></span>
+                <input type="tel" class="form-control" name="phone" id="phone" value="(33) 99910-2490">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-lock txt-blue-3 form-icon"></i></span>
+                <input type="password" class="form-control" name="pass" id="pass" value="123">
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="far fa-check-circle form-ico"></i> Salvar</button>
         </div>
     </div>
 @endsection
