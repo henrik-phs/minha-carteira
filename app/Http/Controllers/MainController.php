@@ -67,9 +67,22 @@ class MainController extends Controller
 
     public function report()
     {
-        $total_in = Insert::where("type", "1")->get();
+        $total_pay_in  = Insert::where("type", "1")->sum('value');
+        $total_pay_out = Insert::where("type", "0")->sum('value');
+
+        $total_day_in  = Insert::where("type", "1")->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
+        if (!$total_day_in)
+            $total_day_in  = Insert::where("type", "1")->first();
+
+        $total_day_out = Insert::where("type", "0")->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
+        if (!$total_day_out)
+            $total_day_out  = Insert::where("type", "0")->first();
+
         return view('report', [
-            "total_in" => $total_in
+            "total_pay_in"  => $total_pay_in,
+            "total_pay_out" => $total_pay_out,
+            "total_day_in"  => $total_day_in,
+            "total_day_out" => $total_day_out,
         ]);
     }
 }

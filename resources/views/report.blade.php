@@ -9,32 +9,31 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <div class="row center">
-        {{var_dump($total_in)}}
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Total de entradas</span><br>
-                <span class="text-success">R$ 200,00</span>
+                <span class="text-success">R$ {{numberFormatBRL($total_pay_in)}}</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Total de saídas</span><br>
-                <span class="text-danger">R$ 250,00</span>
+                <span class="text-danger">R$ {{numberFormatBRL($total_pay_out)}}</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Dia maior entrada</span><br>
-                <span class="text-success">17/07/2022</span>
+                <span class="text-success">{{ dateFormat(@$total_day_in->date) }}</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Dia maior saída</span><br>
-                <span class="text-danger">15/07/2022</span>
+                <span class="text-danger">{{ dateFormat(@$total_day_out->date) }}</span>
             </div>
         </div>
     </div>
