@@ -78,11 +78,21 @@ class MainController extends Controller
         if (!$total_day_out)
             $total_day_out  = Insert::where("type", "0")->first();
 
+        $total_history_in = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "1")->groupBy("date")->get();
+        $total_history_out = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "0")->groupBy("date")->get();
+        
+        // foreach($total_history_in as $history){
+        //     echo $history->date . "<br>";
+        //     echo $history->value . "<br>";
+        // }
+
         return view('report', [
-            "total_pay_in"  => $total_pay_in,
-            "total_pay_out" => $total_pay_out,
-            "total_day_in"  => $total_day_in,
-            "total_day_out" => $total_day_out,
+            "total_pay_in"      => $total_pay_in,
+            "total_pay_out"     => $total_pay_out,
+            "total_day_in"      => $total_day_in,
+            "total_day_out"     => $total_day_out,
+            "total_history_in"  => $total_history_in,
+            "total_history_out" => $total_history_out,
         ]);
     }
 }

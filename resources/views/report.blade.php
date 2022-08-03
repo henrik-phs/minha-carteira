@@ -12,14 +12,14 @@
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Total de entradas</span><br>
-                <span class="text-success">R$ {{numberFormatBRL($total_pay_in)}}</span>
+                <span class="text-success">R$ {{ numberFormatBRL($total_pay_in) }}</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card card-body">
                 <span class="txt-grey-4">Total de saídas</span><br>
-                <span class="text-danger">R$ {{numberFormatBRL($total_pay_out)}}</span>
+                <span class="text-danger">R$ {{ numberFormatBRL($total_pay_out) }}</span>
             </div>
         </div>
 
@@ -44,6 +44,21 @@
             <h2>Histórico</h2><br>
             <canvas id="historic" width="400" height="100"></canvas>
         </div>
+
+        @php
+            // ENTRADAS
+            foreach ($total_history_in as $history_in) {
+                $dia[dateFormat($history_in->date)][1] = $history_in->value;
+            }
+            
+            foreach ($total_history_out as $history_out) {
+                $dia[dateFormat($history_out->date)][0] = $history_out->value;
+            }
+            
+            // ORDENA O ARRAY
+            ksort($dia);
+            
+        @endphp
     </div>
 
     <br>
@@ -70,28 +85,34 @@
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [
+                    @foreach ($dia as $key => $value)
+                        "{{ $key }}",
+                    @endforeach
+                ],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
+                        label: 'Entradas',
+                        data: [
+                            @foreach ($dia as $key => $value)
+                                "{{ @$value[1] }}",
+                            @endforeach
+                        ],
+                        backgroundColor: '#198754',
+                        borderColor: '#299764',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Saídas',
+                        data: [
+                            @foreach ($dia as $key => $value)
+                                "{{ @$value[0] }}",
+                            @endforeach
+                        ],
+                        backgroundColor: '#dc3545',
+                        borderColor: '#ec4555',
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
                 scales: {
