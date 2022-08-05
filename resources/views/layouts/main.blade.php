@@ -67,9 +67,17 @@ function urlBase(string $uri = null)
                     <a href="#" class="txt-blue-3"><i class="fas fa-question-circle"></i></a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="#" class="txt-blue-3"><i class="fa-solid fa-right-from-bracket"></i></a>
-                </li>
+                @auth
+                    <li class="nav-item">
+
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <a class="txt-blue-3" href="/logout"
+                                onclick="event.preventDefault();this.closest('form').submit();"><i
+                                    class="fa-solid fa-right-from-bracket"></i></a>
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </nav>
     </div>

@@ -11,13 +11,13 @@
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="fa fa-circle-user txt-blue-3 form-icon"></i></span>
                 <input type="text" name="name" id="name" class="form-control"
-                    value="{{ $user->name }}">
+                    value="{{ @$user->name }}">
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="far fa-envelope txt-blue-3 form-icon"></i></span>
                 <input type="email" class="form-control" name="email" id="email"
-                    value="{{ $user->email }}">
+                    value="{{ @$user->email }}">
             </div>
 
             <div class="input-group mb-3">
