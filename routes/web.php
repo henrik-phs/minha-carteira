@@ -16,6 +16,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [MainController::class, "index"]);
+Route::get('/home', [MainController::class, "home"]);
 Route::get('/insert', [MainController::class, 'insert']);
 Route::post('/insert/data', [MainController::class, 'insertData']);
 

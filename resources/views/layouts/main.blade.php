@@ -38,6 +38,7 @@ function urlBase(string $uri = null)
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="imgs/logo.png" type="image/x-icon">
     <!-- Styles -->
     <link rel="stylesheet" href="/css/style.css?{{ time() }}">
     <link rel="stylesheet" href="/css/colors.css?{{ time() }}">

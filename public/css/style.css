@@ -142,6 +142,50 @@ b {
     font-size: 20px;
 }
 
+
+/* MENU INLINE HOME */
+
+.menu-home {
+    padding: 25px 3em;
+    height: 4em;
+    box-shadow: 0 0 4px #ccc;
+    font-size: 18px;
+    /* display: flex;
+    align-items: center; */
+}
+
+.menu-logo {
+    float: left;
+}
+
+.nav-menu-inline-1 ul {
+    text-decoration: none;
+    list-style: none;
+    float: right;
+}
+
+.nav-menu-inline-1 ul li {
+    display: inline;
+}
+
+
+/* HEADER HOME */
+
+.header-home {
+    padding: 5em;
+}
+
+.btn-home {
+    border: 2px solid #2d8bba;
+    border-radius: 30px;
+    color: #2d8bba;
+    padding: 7px 20px;
+}
+
+.btn-home:hover {
+    border: 2px solid #2f5f98;
+}
+
 @media(max-width: 1000px) {
     .nav-topo,
     .conteudo {

@@ -12,6 +12,11 @@ class MainController extends Controller
         return view("welcome");
     }
 
+    public function home()
+    {
+        return view("home");
+    }
+
     public function insert()
     {
         return view("insert");
