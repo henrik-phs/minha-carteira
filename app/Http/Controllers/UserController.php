@@ -8,6 +8,10 @@ class UserController extends Controller
 {
     public function account()
     {
-        return view("account");
+        $user = auth()->user();
+
+        return view("account", [
+            'user' => $user
+        ]);
     }
 }

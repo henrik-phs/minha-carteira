@@ -48,11 +48,11 @@
         @php
             // ENTRADAS
             foreach ($total_history_in as $history_in) {
-                $dia[dateFormat($history_in->date)][1] = $history_in->value;
+                $dia["$history_in->date"][1] = $history_in->value;
             }
             
             foreach ($total_history_out as $history_out) {
-                $dia[dateFormat($history_out->date)][0] = $history_out->value;
+                $dia["$history_out->date"][0] = $history_out->value;
             }
             
             // ORDENA O ARRAY
@@ -63,7 +63,7 @@
 
     <br>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <h2>Tipos De Pagamentos</h2>
 
             <div class="row">
@@ -87,7 +87,7 @@
             data: {
                 labels: [
                     @foreach ($dia as $key => $value)
-                        "{{ $key }}",
+                        "{{ dateFormat($key) }}",
                     @endforeach
                 ],
                 datasets: [{
@@ -133,11 +133,11 @@
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [300, 50, 100],
+                data: [{{$pay_in_cash}}, {{$pay_in_card}}, {{$pay_in_pix}}],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
+                    '#0F0',
+                    '#F60',
+                    '#059BFF'
                 ],
                 hoverOffset: 4
             }]
@@ -160,11 +160,11 @@
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [300, 50, 100],
+                data: [{{$pay_out_cash}}, {{$pay_out_card}}, {{$pay_out_pix}}],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
+                    '#0A0',
+                    '#F60',
+                    '#059BFF'
                 ],
                 hoverOffset: 4
             }]

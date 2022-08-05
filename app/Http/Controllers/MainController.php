@@ -81,10 +81,13 @@ class MainController extends Controller
         $total_history_in = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "1")->groupBy("date")->get();
         $total_history_out = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "0")->groupBy("date")->get();
         
-        // foreach($total_history_in as $history){
-        //     echo $history->date . "<br>";
-        //     echo $history->value . "<br>";
-        // }
+        $pay_in_cash = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "dinheiro")->first();
+        $pay_in_card = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "cartão de crédito")->first();
+        $pay_in_pix = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "pix")->first();
+
+        $pay_out_cash = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "dinheiro")->first();
+        $pay_out_card = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "cartão de crédito")->first();
+        $pay_out_pix = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "pix")->first();
 
         return view('report', [
             "total_pay_in"      => $total_pay_in,
@@ -93,6 +96,12 @@ class MainController extends Controller
             "total_day_out"     => $total_day_out,
             "total_history_in"  => $total_history_in,
             "total_history_out" => $total_history_out,
+            "pay_in_cash" => $pay_in_cash->value,
+            "pay_in_card" => $pay_in_card->value,
+            "pay_in_pix" => $pay_in_pix->value,
+            "pay_out_cash" => $pay_out_cash->value,
+            "pay_out_card" => $pay_out_card->value,
+            "pay_out_pix" => $pay_out_pix->value,
         ]);
     }
 }
