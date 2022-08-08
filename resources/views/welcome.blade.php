@@ -56,7 +56,7 @@ function urlBase(string $uri = null)
         <nav class="nav-menu-inline-1">
             <ul>
                 <li><a href="/login" class="txt-grey-4">Entrar</a></li>
-                <li><a href="/login" class="btn-home">Cadastrar</a></li>
+                <li><a href="/register" class="btn-home">Cadastrar</a></li>
             </ul>
         </nav>
     </div>

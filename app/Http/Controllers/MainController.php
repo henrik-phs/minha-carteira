@@ -12,9 +12,9 @@ class MainController extends Controller
         return view("welcome");
     }
 
-    public function home()
+    public function dashboard()
     {
-        return view("home");
+        return view("dashboard");
     }
 
     public function insert()
@@ -24,6 +24,8 @@ class MainController extends Controller
 
     public function insertData(Request $request)
     {
+        $user = auth()->user();
+
         $insert = new Insert();
         $insert->value = $request->value;
         $insert->description = $request->description;
@@ -31,15 +33,17 @@ class MainController extends Controller
         $insert->category = $request->category;
         $insert->type_payment = $request->type_payment;
         $insert->date = $request->date;
+        $insert->user_id = $user->id;
 
         $insert->save();
 
-        return redirect('/')->with('msg', 'Sucesso ao inserir!');
+        return redirect('/dashboard')->with('msg', 'Sucesso ao inserir!');
     }
 
     public function read()
     {
-        $inserts = Insert::query()->orderBy('date', 'DESC')->get();
+        $user = auth()->user();
+        $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->get();
 
         return view('read', [
             'inserts' => $inserts
@@ -72,27 +76,29 @@ class MainController extends Controller
 
     public function report()
     {
-        $total_pay_in  = Insert::where("type", "1")->sum('value');
-        $total_pay_out = Insert::where("type", "0")->sum('value');
+        $user = auth()->user();
 
-        $total_day_in  = Insert::where("type", "1")->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
+        $total_pay_in  = Insert::where("type", "1")->where("user_id", $user->id)->sum('value');
+        $total_pay_out = Insert::where("type", "0")->where("user_id", $user->id)->sum('value');
+
+        $total_day_in  = Insert::where("type", "1")->where("user_id", $user->id)->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
         if (!$total_day_in)
-            $total_day_in  = Insert::where("type", "1")->first();
+            $total_day_in  = Insert::where("type", "1")->where("user_id", $user->id)->first();
 
-        $total_day_out = Insert::where("type", "0")->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
+        $total_day_out = Insert::where("type", "0")->where("user_id", $user->id)->whereRaw("value = (SELECT MAX(value) FROM inserts)")->first();
         if (!$total_day_out)
-            $total_day_out  = Insert::where("type", "0")->first();
+            $total_day_out  = Insert::where("type", "0")->where("user_id", $user->id)->first();
 
-        $total_history_in = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "1")->groupBy("date")->get();
-        $total_history_out = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "0")->groupBy("date")->get();
+        $total_history_in = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "1")->where("user_id", $user->id)->groupBy("date")->get();
+        $total_history_out = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "0")->where("user_id", $user->id)->groupBy("date")->get();
         
-        $pay_in_cash = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "dinheiro")->first();
-        $pay_in_card = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "cartão de crédito")->first();
-        $pay_in_pix = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "pix")->first();
+        $pay_in_cash = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "dinheiro")->where("user_id", $user->id)->first();
+        $pay_in_card = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "cartão de crédito")->where("user_id", $user->id)->first();
+        $pay_in_pix = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "pix")->where("user_id", $user->id)->first();
 
-        $pay_out_cash = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "dinheiro")->first();
-        $pay_out_card = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "cartão de crédito")->first();
-        $pay_out_pix = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "pix")->first();
+        $pay_out_cash = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "dinheiro")->where("user_id", $user->id)->first();
+        $pay_out_card = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "cartão de crédito")->where("user_id", $user->id)->first();
+        $pay_out_pix = Insert::selectRaw("SUM(value) as value")->where("type", "0")->where("type_payment", "pix")->where("user_id", $user->id)->first();
 
         return view('report', [
             "total_pay_in"      => $total_pay_in,

@@ -27,33 +27,33 @@
     ];
     @endphp
 
-    @if ($inserts->count() > 0)
-        @foreach ($inserts as $insert)
+    @if ($users->count() > 0)
+        @foreach ($users as $user)
             <div class="card card-body">
                 <div class="row">
                     <div class="col-md-2 col-6">
                         <small class="txt-small txt-grey-1">Data: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ date('d/m/Y', strtotime($insert->date)) }}</span>
+                        <span class="txt-desc txt-grey-4">{{ date('d/m/Y', strtotime($user->date)) }}</span>
                     </div>
 
                     <div class="col-md-2 col-6">
                         <small class="txt-small txt-grey-1">Valor: <br></small>
                         <b>
-                            <span class="txt-desc {{ $tipoSinal[$insert->type][1] }}">
-                                {{ $tipoSinal[$insert->type][0] }}R$
-                                {{ number_format($insert->value, 2, ',', '.') }}
+                            <span class="txt-desc">
+                                R$
+                                {{ number_format($user->value, 2, ',', '.') }}
                             </span>
                         </b>
                     </div>
 
                     <div class="col-md-3">
                         <small class="txt-small txt-grey-1">Descrição: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ $insert->description }}</span>
+                        <span class="txt-desc txt-grey-4">{{ $user->description }}</span>
                     </div>
 
                     <div class="col-md-3">
                         <small class="txt-small txt-grey-1">Categoria: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ $insert->category }}</span>
+                        <span class="txt-desc txt-grey-4">{{ $user->category }}</span>
                     </div>
 
                     <div class="col-md-2">
@@ -61,15 +61,15 @@
                         <table>
                             <tr>
                                 <td>
-                                    <span style="font-size: 24px"><i class="{{ $tipoPagamento[$insert->type_payment] }}"
-                                            title="{{ $insert->type_payment }}"></i></span> &nbsp;
+                                    <span style="font-size: 24px"><i class=""
+                                            title="{{ $user->type_payment }}"></i></span> &nbsp;
                                 </td>
                                 <td>
-                                    <a href="/edit/{{ $insert->id }}" class="btn btn-warning btn-sm"
+                                    <a href="/edit/{{ $user->id }}" class="btn btn-warning btn-sm"
                                         title="Editar registro"><i class="fas fa-edit"></i></a> &nbsp;
                                 </td>
                                 <td>
-                                    <form action="/delete/data/{{ $insert->id }}" method="post">
+                                    <form action="/delete/data/{{ $user->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
 

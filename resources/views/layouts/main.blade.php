@@ -91,7 +91,7 @@ function urlBase(string $uri = null)
 
         <ul class="navbar-nav">
             <li class="nav-item {{ $url_atual == urlBase() ? 'active' : '' }}">
-                <a class="nav-link txt-grey-4" href="/">
+                <a class="nav-link txt-grey-4" href="/dashboard">
                     {{-- <ion-icon name="home-outline"></ion-icon> --}}
                     <i class="fa-solid fa-house-chimney txt-blue-3"></i>
                     <span class="txt-menu">Home</span>

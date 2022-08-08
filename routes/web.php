@@ -14,30 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use Laravel\Jetstream\Rules\Role;
 
 Route::get('/', [MainController::class, "index"]);
-Route::get('/home', [MainController::class, "home"]);
-Route::get('/insert', [MainController::class, 'insert']);
-Route::post('/insert/data', [MainController::class, 'insertData']);
+Route::get('/dashboard', [MainController::class, "dashboard"])->middleware('auth');
+Route::get('/insert', [MainController::class, 'insert'])->middleware('auth');
+Route::post('/insert/data', [MainController::class, 'insertData'])->middleware('auth');
 
-Route::get('/read', [MainController::class, 'read']);
+Route::get('/read', [MainController::class, 'read'])->middleware('auth');
 
-Route::get('/edit/{id}', [MainController::class, 'edit']);
-Route::post('/edit/data/{id}', [MainController::class, 'editData']);
+Route::get('/edit/{id}', [MainController::class, 'edit'])->middleware('auth');
+Route::post('/edit/data/{id}', [MainController::class, 'editData'])->middleware('auth');
 
-Route::delete('delete/data/{id}', [MainController::class, 'deleteData']);
+Route::delete('delete/data/{id}', [MainController::class, 'deleteData'])->middleware('auth');
 
-Route::get('/report', [MainController::class, 'report']);
+Route::get('/report', [MainController::class, 'report'])->middleware('auth');
 
+Route::get('account', [UserController::class, 'account'])->middleware('auth');
+Route::post('account/edit/{id}', [UserController::class, 'editUser'])->middleware('auth');
 
-Route::get('account', [UserController::class, 'account']);
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+Route::get('/users', [UserController::class, 'users'])->middleware('auth');

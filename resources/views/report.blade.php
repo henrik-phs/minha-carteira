@@ -56,7 +56,9 @@
             }
             
             // ORDENA O ARRAY
-            ksort($dia);
+            if (@$dia) {
+                @ksort($dia);
+            }
             
         @endphp
     </div>
@@ -86,16 +88,20 @@
             type: 'bar',
             data: {
                 labels: [
-                    @foreach ($dia as $key => $value)
-                        "{{ dateFormat($key) }}",
-                    @endforeach
+                    @if (@$dia)
+                        @foreach (@$dia as $key => $value)
+                            "{{ dateFormat($key) }}",
+                        @endforeach
+                    @endif
                 ],
                 datasets: [{
                         label: 'Entradas',
                         data: [
-                            @foreach ($dia as $key => $value)
-                                "{{ @$value[1] }}",
-                            @endforeach
+                            @if (@$dia)
+                                @foreach (@$dia as $key => $value)
+                                    "{{ @$value[1] }}",
+                                @endforeach
+                            @endif
                         ],
                         backgroundColor: '#198754',
                         borderColor: '#299764',
@@ -104,9 +110,11 @@
                     {
                         label: 'Saídas',
                         data: [
-                            @foreach ($dia as $key => $value)
-                                "{{ @$value[0] }}",
-                            @endforeach
+                            @if (@$dia)
+                                @foreach (@$dia as $key => $value)
+                                    "{{ @$value[0] }}",
+                                @endforeach
+                            @endif
                         ],
                         backgroundColor: '#dc3545',
                         borderColor: '#ec4555',
@@ -133,7 +141,7 @@
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [{{$pay_in_cash}}, {{$pay_in_card}}, {{$pay_in_pix}}],
+                data: [{{ $pay_in_cash }}, {{ $pay_in_card }}, {{ $pay_in_pix }}],
                 backgroundColor: [
                     '#0F0',
                     '#F60',
@@ -160,7 +168,7 @@
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [{{$pay_out_cash}}, {{$pay_out_card}}, {{$pay_out_pix}}],
+                data: [{{ $pay_out_cash }}, {{ $pay_out_card }}, {{ $pay_out_pix }}],
                 backgroundColor: [
                     '#0A0',
                     '#F60',
