@@ -31,6 +31,8 @@ Route::delete('delete/data/{id}', [MainController::class, 'deleteData'])->middle
 Route::get('/report', [MainController::class, 'report'])->middleware('auth');
 
 Route::get('account', [UserController::class, 'account'])->middleware('auth');
-Route::post('account/edit/{id}', [UserController::class, 'editUser'])->middleware('auth');
+Route::post('account/edit/{id}', [UserController::class, 'editProfile'])->middleware('auth');
 
 Route::get('/users', [UserController::class, 'users'])->middleware('auth');
+Route::post('/users/edit/{id}', [UserController::class, 'editUser'])->middleware('auth');
+Route::delete('/users/delete/{id}', [UserController::class, 'deleteUser'])->middleware('auth');

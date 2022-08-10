@@ -34,6 +34,12 @@ a {
     border: 1px solid #ddd;
 }
 
+.modal-content {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 2px 2px 4px #666;
+}
+
 .icon-menu {
     font-size: 60px;
 }
@@ -185,6 +191,11 @@ b {
 .btn-home:hover {
     border: 2px solid #2f5f98;
 }
+
+
+/* FORMULÁRIOS */
+
+.form-control {}
 
 @media(max-width: 1000px) {
     .nav-topo,

@@ -16,7 +16,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function editUser(Request $request)
+    public function editProfile(Request $request)
     {
         $data = $request->all();
         User::findOrFail($request->id)->update($data);
@@ -25,10 +25,30 @@ class UserController extends Controller
 
     public function users()
     {
+        if (auth()->user()->user_type != 1) {
+            return redirect('/dashboard');
+        }
         $users = User::query()->get();
 
         return view("users", [
             'users' => $users
         ]);
+    }
+
+    public function editUser(Request $request)
+    {
+        $data = $request->all();
+        if (User::findOrFail($request->id)->update($data))
+            return redirect('/users')->with("msg", "Salvo com sucesso!");
+        else
+            return redirect('/users')->with("msg", "Erro ao salvar!");
+    }
+
+    public function deleteUser($id)
+    {
+        if (User::findOrFail($id)->delete())
+            return redirect('/users')->with("msg", "Salvo com sucesso!");
+        else
+            return redirect('/users')->with("msg", "Erro ao salvar!");
     }
 }

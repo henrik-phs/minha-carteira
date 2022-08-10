@@ -1,81 +1,51 @@
 @extends('layouts/main')
 
-@section('title', 'Histórico de entradas e saídas')
+@section('title', 'Usuários')
 
 @section('content')
 
     @php
-    $tipo = [
-        0 => 'fas fa-arrow-circle-down text-danger',
-        1 => 'fas fa-arrow-circle-up text-success',
-    ];
-
-    $tipoSinal = [
-        0 => ['-', 'text-danger'],
-        1 => ['+', 'text-success'],
-    ];
-
-    $tipoNome = [
-        0 => 'saída',
-        1 => 'entrada',
-    ];
-
-    $tipoPagamento = [
-        'dinheiro' => 'fa-solid fa-money-bill-1 text-success',
-        'cartão de crédito' => 'fa-solid fa-credit-card text-success',
-        'pix' => 'fa-brands fa-pix text-info',
+    $user_type = [
+        1 => 'Admin',
+        2 => 'Padrão',
     ];
     @endphp
 
     @if ($users->count() > 0)
         @foreach ($users as $user)
             <div class="card card-body">
+                <small
+                    class="txt-small {{ $user->user_type == '1' ? 'txt-blue-4' : 'txt-blue-2' }}">{{ $user_type[$user->user_type] }}</small>
                 <div class="row">
-                    <div class="col-md-2 col-6">
-                        <small class="txt-small txt-grey-1">Data: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ date('d/m/Y', strtotime($user->date)) }}</span>
+                    <div class="col-md col-3">
+                        <small class="txt-small txt-grey-1">Nome: <br></small>
+                        <span class="txt-desc txt-grey-4">{{ $user->name }}</span>
                     </div>
 
-                    <div class="col-md-2 col-6">
-                        <small class="txt-small txt-grey-1">Valor: <br></small>
-                        <b>
-                            <span class="txt-desc">
-                                R$
-                                {{ number_format($user->value, 2, ',', '.') }}
-                            </span>
-                        </b>
-                    </div>
-
-                    <div class="col-md-3">
-                        <small class="txt-small txt-grey-1">Descrição: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ $user->description }}</span>
-                    </div>
-
-                    <div class="col-md-3">
-                        <small class="txt-small txt-grey-1">Categoria: <br></small>
-                        <span class="txt-desc txt-grey-4">{{ $user->category }}</span>
+                    <div class="col-md col-5">
+                        <small class="txt-small txt-grey-1">Email: <br></small>
+                        <span class="txt-desc txt-grey-4">{{ $user->email }}</span>
                     </div>
 
                     <div class="col-md-2">
-                        <small class="txt-small txt-grey-1">Tipo: <br></small>
+                        <small class="txt-small txt-grey-1">Telefone: <br></small>
+                        <span class="txt-desc txt-grey-4">{{ $user->phone }}</span>
+                    </div>
+
+                    <div class="col-md-2">
+                        <small class="txt-small txt-grey-1">Ação: <br></small>
                         <table>
                             <tr>
                                 <td>
-                                    <span style="font-size: 24px"><i class=""
-                                            title="{{ $user->type_payment }}"></i></span> &nbsp;
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                        data-target="#modal-edit{{ $user->id }}" title="Editar registro">
+                                        <i class="fas fa-edit"></i></button> &nbsp;
                                 </td>
                                 <td>
-                                    <a href="/edit/{{ $user->id }}" class="btn btn-warning btn-sm"
-                                        title="Editar registro"><i class="fas fa-edit"></i></a> &nbsp;
-                                </td>
-                                <td>
-                                    <form action="/delete/data/{{ $user->id }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#modal-delete{{ $user->id }}" title="Remover Registro">
+                                        <i class="fas fa-trash"></i></button>
 
-                                        <button type="submit" class="btn btn-danger btn-sm" title="Remover Registro"><i
-                                                class="fas fa-trash"></i></button>
-                                    </form>
                                 </td>
                             </tr>
                         </table>
@@ -84,6 +54,8 @@
                 </div>
             </div>
             <br>
+
+            @include('users-modal')
         @endforeach
     @else
         <div class="card card-body">

@@ -128,6 +128,15 @@ function urlBase(string $uri = null)
                     <span class="txt-menu">Minha Conta</span>
                 </a>
             </li>
+
+            @if (auth()->user()->user_type == 1)
+                <li class="nav-item {{ $url_atual == urlBase('/users') ? 'active' : '' }}">
+                    <a class="nav-link txt-grey-4" href="/users">
+                        <i class="fas fa-users-cog txt-blue-3"></i>
+                        <span class="txt-menu">Usuários</span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 
