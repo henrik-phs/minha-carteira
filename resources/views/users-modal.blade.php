@@ -21,7 +21,7 @@
                                 <span class="input-group-text"><i
                                         class="fa fa-circle-user txt-blue-3 form-icon"></i></span>
                                 <input type="text" name="name" id="name" class="form-control"
-                                    value=" {{ $user->name }} ">
+                                    value="{{ $user->name }}">
                             </div>
                         </div>
 

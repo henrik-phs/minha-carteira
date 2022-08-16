@@ -32,6 +32,7 @@ Route::get('/report', [MainController::class, 'report'])->middleware('auth');
 
 Route::get('account', [UserController::class, 'account'])->middleware('auth');
 Route::post('account/edit/{id}', [UserController::class, 'editProfile'])->middleware('auth');
+Route::post('account/photo/{id}', [UserController::class, 'editProfilePicture'])->middleware('auth');
 
 Route::get('/users', [UserController::class, 'users'])->middleware('auth');
 Route::post('/users/edit/{id}', [UserController::class, 'editUser'])->middleware('auth');
