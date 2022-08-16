@@ -145,7 +145,7 @@ function urlBase(string $uri = null)
         <div class="card-main">
             <div class="container-fluid">
 
-                <h1 class="txt-blue-4">@yield('title')</h1>
+                <h1 class="txt-blue-4">@yield('title')</h1><br>
 
                 @if (session('msg'))
                     <div class="alert alert-info">

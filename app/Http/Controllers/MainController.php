@@ -43,7 +43,7 @@ class MainController extends Controller
     public function read()
     {
         $user = auth()->user();
-        $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->get();
+        $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->paginate();
 
         return view('read', [
             'inserts' => $inserts

@@ -85,6 +85,8 @@
             </div>
             <br>
         @endforeach
+
+        {{ $inserts->links() }}
     @else
         <div class="card card-body">
             Nenhum registro encontrado

@@ -53,7 +53,7 @@ class UserController extends Controller
         if (auth()->user()->user_type != 1) {
             return redirect('/dashboard');
         }
-        $users = User::query()->get();
+        $users = User::query()->paginate();
 
         return view("users", [
             'users' => $users

@@ -57,6 +57,8 @@
 
             @include('users-modal')
         @endforeach
+
+        {{ $users->links() }}
     @else
         <div class="card card-body">
             Nenhum registro encontrado
