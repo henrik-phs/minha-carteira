@@ -1,12 +1,79 @@
 @extends('layouts/main')
 
-@section('title', 'Minha Carteira')
+@section('title', 'Relatórios')
+
+@section('filter')
+    <div class="col-md-2">
+        <button class="btn btn-outline-primary" id="btn-search"><i class="fas fa-filter"></i><small>Filtrar</small></span>
+    </div>
+@endsection
 
 @section('content')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
         integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <div class="search" id="form-search" style="display: none">
+        <form action="report" method="GET">
+            @csrf
+            <div class="row">
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Início:</small>
+                    <input type="date" name="start" id="start" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Final:</small>
+                    <input type="date" name="end" id="end" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Descrição:</small>
+                    <input type="text" name="description" id="description" class="form-control">
+                </div>
+
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Categoria:</small>
+                    <select name="category" id="category" class="form-control">
+                        <option value="">Selecionar...</option>
+                        @if ($categories)
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->category }}">{{ $category->category }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Meio Pagamento:</small>
+                    <select name="payment_type" id="payment_type" class="form-control">
+                        <option value="">Selecionar...</option>
+                        <option value="dinheiro">Dinheiro</option>
+                        <option value="cartão de crédito">Cartão de crédito</option>
+                        <option value="pix">Pix</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <small class="txt-blue-5">Tipo:</small>
+                    <select name="type" id="type" class="form-control">
+                        <option value="">Selecionar...</option>
+                        <option value="1">Entrada</option>
+                        <option value="0">Saída</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <small class="text-white">:</small><br>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <div class="row center">
         <div class="col-md-3">
@@ -83,6 +150,16 @@
     </div>
 
     <script>
+        /** 
+         * CONFIGURAÇÕES DOS FILTROS
+        */
+        $("#btn-search").click((e) => {
+            $("#form-search").toggle();
+        });
+
+        /** 
+         * CONFIGURAÇÕES DOS GRÁFICOS
+        */
         const ctx = document.getElementById('historic').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'bar',

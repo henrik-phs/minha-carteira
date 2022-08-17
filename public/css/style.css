@@ -199,6 +199,11 @@ b {
     margin-bottom: 40px;
 }
 
+.btn-filter {
+    text-align: right;
+    float: right;
+}
+
 @media(max-width: 1000px) {
     .nav-topo,
     .conteudo {

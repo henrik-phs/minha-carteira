@@ -2,6 +2,12 @@
 
 @section('title', 'Histórico de entradas e saídas')
 
+@section('filter')
+    <div class="col-md-2">
+        <button class="btn btn-outline-primary" id="btn-search"><i class="fas fa-filter"></i><small>Filtrar</small></span>
+    </div>
+@endsection
+
 @section('content')
 
     @php
@@ -27,7 +33,7 @@
     ];
     @endphp
 
-    <div class="search">
+    <div class="search" id="form-search" style="display: none">
         <form action="read" method="GET">
             @csrf
             <div class="row">
@@ -153,4 +159,14 @@
             Nenhum registro encontrado
         </div>
     @endif
+
+    <script>
+        /** 
+         * CONFIGURAÇÕES DOS FILTROS
+         */
+        
+        $("#btn-search").click((e) => {
+            $("#form-search").toggle();
+        });
+    </script>
 @endsection
