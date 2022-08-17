@@ -63,11 +63,20 @@ class MainController extends Controller
 
     public function filters()
     {
+        $start = request("start");
+        $end = request("end");
         $description = request("description");
         $category = request("category");
         $type_payment = request("type_payment");
         $type = request("type");
         $data = array();
+
+        if($start || $end){
+            $start = $start ? $start : date("Y-m-d", strtotime("-7 days", strtotime(date("Y-m-d"))));
+            $end = $end ? $end : date("Y-m-d");
+
+            $data[] = "date BETWEEN '$start' AND '$end'";
+        }
 
         if ($description)
             $data[] = "description LIKE '%$description%'";
