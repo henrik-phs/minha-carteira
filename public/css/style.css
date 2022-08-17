@@ -193,9 +193,11 @@ b {
 }
 
 
-/* FORMULÁRIOS */
+/* FILTROS */
 
-.form-control {}
+.search {
+    margin-bottom: 20px;
+}
 
 @media(max-width: 1000px) {
     .nav-topo,

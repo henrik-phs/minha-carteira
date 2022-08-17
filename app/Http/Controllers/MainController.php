@@ -43,11 +43,45 @@ class MainController extends Controller
     public function read()
     {
         $user = auth()->user();
-        $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->paginate();
+
+        $filters = $this->filters();
+
+        if ($filters) {
+            $inserts = Insert::whereRaw($filters)->where("user_id", $user->id)->orderBy('date', 'DESC')->paginate();
+        } else {
+            $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->paginate();
+        }
+
+        // $inserts = Insert::where("user_id", $user->id)->orderBy('date', 'DESC')->paginate();
+        $categories = Insert::select("category")->groupBy("category")->get();
 
         return view('read', [
-            'inserts' => $inserts
+            'inserts' => $inserts,
+            'categories' => $categories
         ]);
+    }
+
+    public function filters()
+    {
+        $description = request("description");
+        $category = request("category");
+        $type_payment = request("type_payment");
+        $type = request("type");
+        $data = array();
+
+        if ($description)
+            $data[] = "description LIKE '%$description%'";
+
+        if ($category)
+            $data[] = "category = '$category'";
+
+        if ($type_payment)
+            $data[] = "payment_type = '$type_payment'";
+
+        if ($type || $type == '0')
+            $data[] = "type = '$type'";
+
+        return implode(" AND ", $data);
     }
 
     public function edit($id)
@@ -91,7 +125,7 @@ class MainController extends Controller
 
         $total_history_in = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "1")->where("user_id", $user->id)->groupBy("date")->get();
         $total_history_out = Insert::select("date")->selectRaw("SUM(value) as value")->where("type", "0")->where("user_id", $user->id)->groupBy("date")->get();
-        
+
         $pay_in_cash = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "dinheiro")->where("user_id", $user->id)->first();
         $pay_in_card = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "cartão de crédito")->where("user_id", $user->id)->first();
         $pay_in_pix = Insert::selectRaw("SUM(value) as value")->where("type", "1")->where("type_payment", "pix")->where("user_id", $user->id)->first();
