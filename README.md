@@ -1,7 +1,7 @@
 # Minha Carteira
 
 
-[![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)](https://github.com/henrik-phs/minha-carteira/
+![Badge em Desenvolvimento](https://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 [![GitHub issues](https://img.shields.io/github/issues/henrik-phs/minha-carteira)](https://github.com/henrik-phs/minha-carteira/issues)
 [![GitHub forks](https://img.shields.io/github/forks/henrik-phs/minha-carteira)](https://github.com/henrik-phs/minha-carteira/network)
 [![GitHub stars](https://img.shields.io/github/stars/henrik-phs/minha-carteira)](https://github.com/henrik-phs/minha-carteira/stargazers)
@@ -91,3 +91,9 @@ npm run dev
 <img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white"> 9.22.1
 
 <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"> 16.16.0
+
+## Autor
+
+<img src="https://avatars.githubusercontent.com/u/24757230" width="120px">
+
+Pedro H. da Silva
