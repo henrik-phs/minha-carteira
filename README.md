@@ -28,6 +28,10 @@ Minha Carteira é um simples sistema para inserção e acompanhamento de entrada
 - **Minha Conta**
   - Edite e veja informações da sua conta de usuário
 
+## Tarefas a serem executadas
+
+- [ ] Meta de gastos mensais
+- [ ] Guias de ajuda
 
 ## Como executar o projeto
 
