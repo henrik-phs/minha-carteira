@@ -49,14 +49,18 @@ function urlBase(string $uri = null)
 <body>
     <div class="menu-home">
         <nav class="txt-grey-4 menu-logo">
+            <button type="button" id="icon-bars" class="btn btn-link" style="font-size: 20px">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
             <img src="imgs/logo.png" alt="" width="30px">
-            <span class="txt-menu">Minha Carteira</span>
+            <span class="txt-logo">Minha Carteira</span>
         </nav>
 
         <nav class="nav-menu-inline-1">
             <ul>
                 <li><a href="/login" class="txt-grey-4">Entrar</a></li>
-                <li><a href="/register" class="btn-home">Cadastrar</a></li>
+                <li><a href="/register" class="btn-home btn-menu-home">Cadastrar</a></li>
             </ul>
         </nav>
     </div>
@@ -68,28 +72,27 @@ function urlBase(string $uri = null)
             <br>
             <a href="/login" class="btn-home">Minha Carteira</a>
         </div>
+    </div>
 
-        <br><br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 col-4">
-                    <canvas id="pay_in"></canvas>
+    <div class="container conteudo-home">
+        <div class="row">
+            <div class="col-md-2 col-4">
+                <canvas id="pay_in"></canvas>
+            </div>
+            <div class="col-md-4 col-8" style="display: flex; align-items: center;">
+                <div>
+                    <h4>Relatórios em Gráficos</h4>
+                    <p>Facilidade ao acompanhar seu fluxo de caixa com gráficos</p>
                 </div>
-                <div class="col-md-4 col-8" style="display: flex; align-items: center;">
-                    <div>
-                        <h4>Relatórios em Gráficos</h4>
-                        <p>Facilidade ao acompanhar seu fluxo de caixa com gráficos</p>
-                    </div>
-                </div>
+            </div>
 
-                <div class="col-md-2 col-4" style="display: flex; align-items: center;">
-                    <img src="imgs/historico2.png" alt="" width="100%">
-                </div>
-                <div class="col-md-4 col-8" style="display: flex; align-items: center;">
-                    <div>
-                        <h4>Histórico Completo</h4>
-                        <p>Tenha acesso ao histórico completo, edite ou exclua registros, tudo na palma da mão</p>
-                    </div>
+            <div class="col-md-2 col-4" style="display: flex; align-items: center;">
+                <img src="imgs/historico2.png" alt="" width="100%">
+            </div>
+            <div class="col-md-4 col-8" style="display: flex; align-items: center;">
+                <div>
+                    <h4>Histórico Completo</h4>
+                    <p>Tenha acesso ao histórico completo, edite ou exclua registros, tudo na palma da mão</p>
                 </div>
             </div>
         </div>
@@ -99,6 +102,10 @@ function urlBase(string $uri = null)
         integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        $("#icon-bars").on('click', function(e) {
+            $(".nav-menu-inline-1").toggle("slow");
+        });
+
         const chartPayIn = document.getElementById('pay_in').getContext('2d');
         const dataPayIn = {
             datasets: [{

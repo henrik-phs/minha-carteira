@@ -150,14 +150,15 @@ b {
 
 
 /* MENU INLINE HOME */
+#icon-bars {
+    display: none;
+}
 
 .menu-home {
     padding: 25px 3em;
     height: 4em;
     box-shadow: 0 0 4px #ccc;
     font-size: 18px;
-    /* display: flex;
-    align-items: center; */
 }
 
 .menu-logo {
@@ -205,23 +206,77 @@ b {
 }
 
 @media(max-width: 1000px) {
+    #icon-bars {
+        display: inline;
+    }
+    .menu-home {
+        padding: 25px 15px;
+        height: auto;
+    }
+
+    .nav-menu-inline-1,
+    .menu-logo {
+        width: 100%;
+        float: none;
+    }
+
+    .nav-menu-inline-1 {
+        display: none;
+    }
+
+    .nav-menu-inline-1 ul {
+        float: none;
+        display: block;
+    }
+
+    .nav-menu-inline-1 ul li {
+        display: block;
+    }
+
+    .btn-menu-home {
+        border: none;
+        color: #3D3D3D;
+        padding: 0;
+    }
+
+    .header-home {
+        padding: 5em 1em;
+    }
+
+    .header-home h1 {
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .conteudo-home h4{
+        font-size: 18px;
+        font-weight: 600;
+    }
     .nav-topo,
     .conteudo {
         margin: 0px 10px 10px 10px;
         width: calc(100% - 20px);
         padding: 10px;
     }
+
     .card-main {
         padding: 10px;
     }
+
     .nav-lateral {
         /* position: absolute; */
         display: none;
     }
+
     .txt-desc {
         font-size: 13px;
     }
+
     .txt-small {
         display: none;
+    }
+
+    .txt-logo {
+        font-size: 16p;
     }
 }
