@@ -4,7 +4,7 @@
 
 @section('filter')
     <div class="col-md-2">
-        <button class="btn btn-outline-primary" id="btn-search"><i class="fas fa-filter"></i><small>Filtrar</small></span>
+        <button class="btn btn-outline-primary" id="btn-search"><i class="fas fa-filter"></i><small>Filtrar</small></span></button>
     </div>
 @endsection
 
